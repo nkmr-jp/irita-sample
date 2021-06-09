@@ -1,7 +1,8 @@
 # irita-sample
 See: https://github.com/bianjieai/irita/tree/master/docs
 
-# Irita インストール
+# 準備
+## Irita インストール
 ```sh
 # 他のバージョンは未検証
 go version
@@ -29,7 +30,7 @@ irita version --long
 ...
 ```
 
-# ドキュメント起動
+## ドキュメント起動
 ```sh
 # 他のバージョンは未検証
 node --version
@@ -46,13 +47,25 @@ yarn serve
 # > > VuePress dev server listening at http://localhost:8080/
 ```
 
-# Openssl インストール
-See: http://localhost:8080/installation/deployment.html
-See: https://github.com/openssl/openssl/blob/openssl-3.0.0-alpha4/INSTALL.md#quick-installation-guide
+## Openssl インストール
+- See: http://localhost:8080/installation/deployment.html
+- See: https://github.com/openssl/openssl/blob/openssl-3.0.0-alpha4/INSTALL.md#quick-installation-guide
+
 ```sh
+# インストール
 git clone -b openssl-3.0.0-alpha4 https://github.com/openssl/openssl.git
 cd openssl && ./config
 make
 make test
 sudo make install
+
+# 確認
+openssl version
+# > OpenSSL 3.0.0-alpha4 25 Jun 2020 (Library: OpenSSL 3.0.0-alpha4 25 Jun 2020)
+```
+
+# testnet起動 (node1台構成)
+```sh
+make init
+make start
 ```

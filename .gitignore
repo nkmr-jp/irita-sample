@@ -1,4 +1,8 @@
-testnet
+testnet*
 priv_validator.pem
 privkey.pem
 req.csr
+root.crt
+root.key
+node0.crt
+root.srl
