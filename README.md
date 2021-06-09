@@ -33,17 +33,17 @@ irita version --long
 ```sh
 # 他のバージョンは未検証
 node --version
-> v15.11.0
+# > v15.11.0
 yarn --version
-> 1.22.10
+# > 1.22.10
 ```
 
 ```sh
 cd irita/docs
 yarn
 yarn serve
-> success [15:46:31] Build edebaa finished in 8703 ms! 
-> > VuePress dev server listening at http://localhost:8080/
+# > success [15:46:31] Build edebaa finished in 8703 ms! 
+# > > VuePress dev server listening at http://localhost:8080/
 ```
 
 # Openssl インストール
