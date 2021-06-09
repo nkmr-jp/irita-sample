@@ -48,8 +48,11 @@ yarn serve
 
 # Openssl インストール
 See: http://localhost:8080/installation/deployment.html
+See: https://github.com/openssl/openssl/blob/openssl-3.0.0-alpha4/INSTALL.md#quick-installation-guide
 ```sh
 git clone -b openssl-3.0.0-alpha4 https://github.com/openssl/openssl.git
 cd openssl && ./config
+make
+make test
 sudo make install
 ```
