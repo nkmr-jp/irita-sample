@@ -63,8 +63,5 @@ reset:
 	rm -f ./root.crt
 	rm -f ./root.key
 	rm -f ./node0.crt
-	rm -f ./-CAcreateserial
-	rm -f ./-CAkey
-	rm -f ./-out
 	rm -f ./root.srl
 
