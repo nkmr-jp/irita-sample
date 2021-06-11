@@ -69,3 +69,23 @@ openssl version
 make init
 make start
 ```
+
+# リセット
+```sh
+make reset
+```
+
+# token
+```sh
+# トークン作成
+make token-issue
+make token-issue | jq -R 'fromjson?' # 整形して表示したい場合
+# 編集
+make token-edit
+# 発行
+make token-mint
+# 所有権を譲渡
+make token-transfer
+# 紹介
+make query-token
+```

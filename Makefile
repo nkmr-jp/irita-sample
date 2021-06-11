@@ -73,15 +73,47 @@ start:
 # http://localhost:8080/console/modules/token.html
 token-issue:
 	irita tx token issue \
-		--symbol=mycredit \
-		--name="my credit" \
-		--initial-supply=10000 \
-		--max-supply=100000 \
-		--scale=0  \
-		--min-unit=mycretdit \
-		--mintable=true \
-		--from=node0 \
-		--chain-id=$(CHAIN_ID) \
-		-b=block \
-		--home=$(OUT_DIR)/node0/iritacli \
-		-y
+	--symbol=mycredit \
+	--name="my credit" \
+	--initial-supply=10000 \
+	--max-supply=100000 \
+	--scale=0  \
+	--min-unit=mycretdit \
+	--mintable=true \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=$(OUT_DIR)/node0/iritacli \
+	-y
+
+token-edit:
+	irita tx token edit mycredit \
+	--max-supply=1000000 \
+	--mintable=true \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=$(OUT_DIR)/node0/iritacli \
+	-y
+
+token-mint:
+	irita tx token mint mycredit \
+	--to=iaa1lq8ye9aksqtyg2mn46esz9825zuxt5zatm5uxm \
+	--amount=1000 \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+token-transfer:
+	irita tx token transfer mycredit \
+	--to=iaa1lq8ye9aksqtyg2mn46esz9825zuxt5zatm5uxm \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=$(OUT_DIR)/node0/iritacli \
+	-y
+
+query-token:
+	irita query token token mycredit -o=json --chain-id=$(CHAIN_ID) | jq
