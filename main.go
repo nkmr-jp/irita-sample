@@ -6,10 +6,13 @@ import (
 	"github.com/bianjieai/irita-sdk-go/types/store"
 )
 
+const (
+	nodeURI  = "tcp://127.0.0.1:26657"
+	grpcAddr = "localhost:9090"
+	chainID  = "test"
+)
+
 func main() {
-	nodeURI := "tcp://localhost:26657"
-	chainID := "test"
-	grpcAddr := "0.0.0.0:9090"
 	options := []types.Option{
 		types.KeyDAOOption(store.NewMemory(nil)),
 		types.TimeoutOption(10),
