@@ -49,12 +49,6 @@ init-detail:
 start-detail:
 	irita start --home=testnet --pruning=nothing
 
-init:
-	irita testnet --v 1 --output-dir ./testnet2 --chain-id=test
-
-start:
-	irita start --home=testnet2/node0/irita
-
 reset:
 	rm -rf ./testnet*
 	rm -f ./priv_validator.pem
@@ -65,3 +59,29 @@ reset:
 	rm -f ./node0.crt
 	rm -f ./root.srl
 
+
+CHAIN_ID=irita-test
+OUT_DIR=testnet
+
+init:
+	irita testnet --v 4 --output-dir ./$(OUT_DIR) --chain-id=$(CHAIN_ID)
+
+start:
+	irita start --home=$(OUT_DIR)/node0/irita
+
+# http://localhost:8080/quick_start/token.html
+# http://localhost:8080/console/modules/token.html
+token-issue:
+	irita tx token issue \
+		--symbol=mycredit \
+		--name="my credit" \
+		--initial-supply=10000 \
+		--max-supply=100000 \
+		--scale=0  \
+		--min-unit=mycretdit \
+		--mintable=true \
+		--from=node0 \
+		--chain-id=$(CHAIN_ID) \
+		-b=block \
+		--home=$(OUT_DIR)/node0/iritacli \
+		-y
