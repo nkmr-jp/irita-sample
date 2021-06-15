@@ -175,3 +175,30 @@ nft-burn:
 
 query-nft:
 	irita query nft token security a4c74c4203af41619d00bb3e2f462c10 --chain-id=$(CHAIN_ID) | jq
+
+
+# http://localhost:8080/console/modules/iservice.html
+service-define:
+	irita tx service define \
+	--name=test \
+	--description=test \
+	--author-description=test \
+	--tags=test \
+	--schemas='{"input":{"type":"object","properties":{"id":{"type":"string"}}},"output":{"type":"object","properties":{"name":{"type":"string"}}}}' \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=$(OUT_DIR)/node0/iritacli \
+	-y
+
+service-bind:
+	irita tx service bind \
+	--service-name=test \
+	--deposit=10000point \
+	--pricing='{"price":"1point"}' \
+	--qos=50 \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=$(OUT_DIR)/node0/iritacli \
+	-y
