@@ -50,6 +50,8 @@ start-detail:
 	irita start --home=testnet --pruning=nothing
 
 reset:
+	@echo
+	@echo "$(GREEN)# RESET: remove files $(RESET)"
 	rm -rf ./testnet*
 	rm -f ./priv_validator.pem
 	rm -f ./privkey.pem
@@ -64,21 +66,28 @@ CHAIN_ID=irita-test
 OUT_DIR=testnet
 
 init:
-	irita testnet --v 4 --output-dir ./$(OUT_DIR) --chain-id=$(CHAIN_ID)
+	@echo
+	@echo "$(GREEN)# INIT: irita testnet $(RESET)"
+	irita testnet --v 1 --output-dir ./$(OUT_DIR) --chain-id=$(CHAIN_ID)
 
 start:
+	@echo
+	@echo "$(GREEN)# START: irita start $(RESET)"
 	irita start --home=$(OUT_DIR)/node0/irita
+
+restart: reset init start
 
 # http://localhost:8080/quick_start/token.html
 # http://localhost:8080/console/modules/token.html
+SYMBOL=mycredit
 token-issue:
 	irita tx token issue \
-	--symbol=mycredit \
+	--symbol=$(SYMBOL) \
 	--name="my credit" \
 	--initial-supply=10000 \
 	--max-supply=100000 \
 	--scale=0  \
-	--min-unit=mycretdit \
+	--min-unit=$(SYMBOL) \
 	--mintable=true \
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
@@ -87,8 +96,8 @@ token-issue:
 	-y
 
 token-edit:
-	irita tx token edit mycredit \
-	--max-supply=1000000 \
+	irita tx token edit $(SYMBOL) \
+	--max-supply=200000 \
 	--mintable=true \
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
@@ -97,7 +106,7 @@ token-edit:
 	-y
 
 token-mint:
-	irita tx token mint mycredit \
+	irita tx token mint $(SYMBOL) \
 	--to=iaa1lq8ye9aksqtyg2mn46esz9825zuxt5zatm5uxm \
 	--amount=1000 \
 	--from=node0 \
@@ -107,7 +116,7 @@ token-mint:
 	-y
 
 token-transfer:
-	irita tx token transfer mycredit \
+	irita tx token transfer $(SYMBOL) \
 	--to=iaa1lq8ye9aksqtyg2mn46esz9825zuxt5zatm5uxm \
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
@@ -116,4 +125,4 @@ token-transfer:
 	-y
 
 query-token:
-	irita query token token mycredit -o=json --chain-id=$(CHAIN_ID) | jq
+	irita query token token $(SYMBOL) -o=json --chain-id=$(CHAIN_ID) | jq
