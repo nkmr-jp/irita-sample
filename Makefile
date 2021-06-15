@@ -134,7 +134,7 @@ nft-issue:
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
 	-b=block \
-	--home=testnet/node0/iritacli \
+	--home=$(OUT_DIR)/node0/iritacli \
 	-y
 
 nft-mint:
@@ -144,7 +144,7 @@ nft-mint:
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
 	-b=block \
-	--home=testnet/node0/iritacli \
+	--home=$(OUT_DIR)/node0/iritacli \
 	-y
 
 nft-edit:
@@ -153,7 +153,7 @@ nft-edit:
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
 	-b=block \
-	--home=testnet/node0/iritacli \
+	--home=$(OUT_DIR)/node0/iritacli \
 	-y
 
 nft-transfer:
@@ -162,7 +162,7 @@ nft-transfer:
 	--from=node0 \
 	--chain-id=$(CHAIN_ID) \
 	-b=block \
-	--home=testnet/node0/iritacli \
+	--home=$(OUT_DIR)/node0/iritacli \
 	-y
 
 nft-burn:
@@ -170,7 +170,7 @@ nft-burn:
 	--from=iaa1gjmj3r0h9krjm9sg4hjkkv5wnsy52xck80g2sf \
 	--chain-id=$(CHAIN_ID) \
 	-b=block \
-	--home=testnet/node0/iritacli \
+	--home=$(OUT_DIR)/node0/iritacli \
 	-y
 
 query-nft:
