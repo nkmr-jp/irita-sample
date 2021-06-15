@@ -126,3 +126,52 @@ token-transfer:
 
 query-token:
 	irita query token token $(SYMBOL) -o=json --chain-id=$(CHAIN_ID) | jq
+
+# http://localhost:8080/console/modules/nft.html
+nft-issue:
+	irita tx nft issue security \
+	--schema='{"type":"object","properties":{"name":{"type":"string"}}}' \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+nft-mint:
+	irita tx nft mint security a4c74c4203af41619d00bb3e2f462c10 \
+	--token-uri=http://metadata.io/a4c74c4203af41619d00bb3e2f462c10 \
+	--token-data='{"name":"test security"}' \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+nft-edit:
+	irita tx nft edit security a4c74c4203af41619d00bb3e2f462c10 \
+	--token-data='{"name":"new test security"}' \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+nft-transfer:
+	irita tx nft transfer iaa1gjmj3r0h9krjm9sg4hjkkv5wnsy52xck80g2sf \
+	security a4c74c4203af41619d00bb3e2f462c10 \
+	--from=node0 \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+nft-burn:
+	irita tx nft burn security a4c74c4203af41619d00bb3e2f462c10 \
+	--from=iaa1gjmj3r0h9krjm9sg4hjkkv5wnsy52xck80g2sf \
+	--chain-id=$(CHAIN_ID) \
+	-b=block \
+	--home=testnet/node0/iritacli \
+	-y
+
+query-nft:
+	irita query nft token security a4c74c4203af41619d00bb3e2f462c10 --chain-id=$(CHAIN_ID) | jq
